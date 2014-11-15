@@ -1,0 +1,20 @@
+
+<template name="decisions">
+    <div>
+      {{#each this}}
+        <div>{{groupName}}:
+
+        {{#each decisions}}
+            <label for="{{../groupName}}-{{this}}">
+            <input type="radio"
+                   name= "{{../groupName}}"
+                   id= "{{../groupName}}-{{this}}"
+                   value= "{{this}}"/>
+            {{this}}</label>
+        {{/each}}
+
+        </div>
+      {{/each}}
+    </div>
+</template>
+

@@ -1,0 +1,95 @@
+<template name="main">
+  {{#if joinedGame}}
+    {{#if waiting}}
+      {{> wait}}
+    {{else}}
+      {{> gameDetails}}
+    {{/if}}
+  {{else}}
+    {{> joinGame}}
+  {{/if}}
+</template>
+
+<template name="wait">
+  <p>Waiting for opponent (shouldn't take long)</p>
+</template>
+
+<template name="joinGame">
+    <div>
+
+    <button type="button" class="btn playHuman">Join a Game</button>
+    </div>
+</template>
+
+<template name="gameDetails">
+
+    <div class="container">
+
+        <div class="row">
+          {{> lineScore lineScoreInfo}}
+        </div>
+
+        <div class="row">
+            <div class="span4">{{> boxscore awayBox}}</div>
+            <div class="span4">{{> gameInfo}}</div>
+            <div class="span4">{{> boxscore homeBox}}</div>
+        </div>
+    </div>
+</template>
+
+<template name="gameInfo">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#game" role="tab" data-toggle="tab">Game</a></li>
+        <li role="presentation"><a href="#plays" role="tab" data-toggle="tab">Play by Play</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="game">{{> summary}}</div>
+        <div role="tabpanel" class="tab-pane" id="plays">{{> plays}}</div>
+    </div>
+</template>
+
+<template name="summary">
+
+    {{#if game.state.top}}
+      <p>Top of the {{formatInning game.state.inning}}</p>
+    {{else}}
+      <p>Bottom of the {{formatInning game.state.inning}}</p>
+    {{/if}}
+    <p>Outs: {{game.state.outs}}</p>
+
+    <p>Now batting: {{batter}}</p>
+
+    <p>Runners:
+      {{#each game.state.runners}}
+        {{lastName this}}
+      {{/each}}
+    </p>
+
+    <p>Last play: {{game.state.lastPlay}}</p>
+
+    {{> decisions availableDecisions}}
+
+    <form>
+        <button>Ready</button>
+    </form>
+
+    <hr/>
+</template>
+
+<template name="plays">
+    <ul>
+      {{#each plays}}
+        {{> play}}
+      {{/each}}
+    </ul>
+</template>
+
+<template name="play">
+    <li>
+      {{description}}
+    </li>
+</template>

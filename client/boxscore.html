@@ -1,0 +1,29 @@
+<template name="boxscore">
+    <table class="table table-condensed table-bordered">
+        <thead>
+        <tr>
+            <th class="span1">{{teamName}}</th>
+            <th class="span1">AB</th>
+            <th class="span1">R</th>
+            <th class="span1">H</th>
+            <th class="span1">RBI</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each box}}
+            {{> boxscoresplayer this}}
+          {{/each}}
+        </tbody>
+    </table>
+
+</template>
+
+<template name="boxscoresplayer">
+    <tr>
+        <td>{{name}} {{pos}}</td>
+        <td>{{ab}}</td>
+        <td>{{r}}</td>
+        <td>{{h}}</td>
+        <td>{{rbi}}</td>
+    </tr>
+</template>

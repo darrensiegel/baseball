@@ -1,0 +1,52 @@
+<template name="lineScore">
+
+    <table class="table table-condensed table-bordered">
+        <thead>
+        <tr>
+            <th class="span2">Teams</th>
+
+            {{#each inningLabels}}
+                <th class="span1">{{this}}</th>
+            {{/each}}
+
+            <th class="span1"></th>
+            <th class="span1">R</th>
+            <th class="span1">H</th>
+            <th class="span1">E</th>
+            <th class="span1">LOB</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{awayTeam}}</td>
+
+            {{#each awayInnings}}
+              <td class="span1">{{this}}</td>
+            {{/each}}
+
+            <td class="span1"></td>
+            <td class="span1">{{game.away.runs}}</td>
+            <td class="span1">{{game.away.hits}}</td>
+            <td class="span1">{{game.away.errors}}</td>
+            <td class="span1">{{game.away.lob}}</td>
+        </tr>
+
+        <tr>
+            <td>{{homeTeam}}</td>
+
+            {{#each homeInnings}}
+              <td class="span1">{{this}}</td>
+            {{/each}}
+
+            <td class="span1"></td>
+            <td class="span1">{{game.home.runs}}</td>
+            <td class="span1">{{game.home.hits}}</td>
+            <td class="span1">{{game.home.errors}}</td>
+            <td class="span1">{{game.home.lob}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</template>
